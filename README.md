@@ -5,7 +5,7 @@ NLW - Pocket Javascript.
     - [x] Select Options
     - [ ] Select Messages
 - [x] Create goal(s)
-- [ ] All goal(s) list
+- [x] List goal(s)
 - [x] Pending goal(s) list
 - [x] Completed goal(s) list
 - [ ] Delete goal(s)
@@ -16,4 +16,5 @@ NLW - Pocket Javascript.
 - .push()
 - .forEach()
 - .find()
+- .filter()
 - .map()

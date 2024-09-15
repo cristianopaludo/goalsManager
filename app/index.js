@@ -59,7 +59,6 @@ const createGoals = async () => {
 }
 
 const listGoals = async () => {
-
   if (goalsList.length <= 0) {
     console.log("There are no goals to list.")
     return
@@ -71,15 +70,17 @@ const listGoals = async () => {
     instructions: false
   })
 
+    // reset check from all goals
+    goalsList.forEach(goal => {
+      goal.checked = false
+    })  
+
   if (selectedGoalsList.length <= 0) {
-    console.log("There are any selected goals.")
+    console.log("There are no selected goals.")
     return
   }
 
-  // reset check from all goals
-  goalsList.forEach(goal => {
-    goal.checked = false
-  })
+  
 
   // check only the goals are checked
   selectedGoalsList.forEach(selectedGoal => {
@@ -118,13 +119,7 @@ const pendingGoals = async () => {
 
 const completedGoals = async () => {
   
-  let completedGoalsList = []
-
-  goalsList.forEach(goal => {
-    if (goal.checked) {
-      completedGoalsList.push(goal)
-    }
-  })
+  let completedGoalsList = goalsList.filter(goal => { return goal.checked }) // this will only return checked goals
 
   if (completedGoalsList.length <= 0) {
     console.log("There are no completed goals.")
@@ -136,8 +131,10 @@ const completedGoals = async () => {
   for (const goalItem of completedGoalsList) {
     console.log(goalItem.value)
   }
+  // await select({
+  //   message: "Completed goals",
+  //   choices: [...completedGoalsList]
+  // })
 }
-
-
 
 start()
