@@ -1,4 +1,4 @@
-const { select, input } = require('@inquirer/prompts')
+const { select, input, checkbox } = require('@inquirer/prompts')
 
 let goalsList = []
 
@@ -9,8 +9,9 @@ const start = async () => {
       message: "Menu >",
       choices: [
         { name: "Create goals",         value: "createGoals"        },
-        { name: "Show pending goals",   value: "pendingGoals"   },
-        { name: "Show completed goals", value: "completedGoals" },
+        { name: "List goals",           value: "listGoals"          },
+        { name: "List pending goals",   value: "pendingGoals"       },
+        { name: "List completed goals", value: "completedGoals"     },
         { name: "Delete goals",         value: "deleteGoals"        },
         { name: "Exit Menu",            value: "exitMenu"           },
       ]
@@ -22,6 +23,9 @@ const start = async () => {
       case "createGoals":
         await createGoals()
         break
+      case "listGoals":
+        await listGoals()
+        break
       case "pendingGoals":
         await pendingGoals()
         break
@@ -29,7 +33,7 @@ const start = async () => {
         completedGoals()
         break
       case "deleteGoals":
-        console.log("Delete Goals")
+        deleteGoals()
         break
       case "exitMenu":
         console.log("Exit Menu")
@@ -52,6 +56,43 @@ const createGoals = async () => {
 
   goalsList.push({ value: goalInput, checked: false })
   console.log("Goal successfully created.")
+}
+
+const listGoals = async () => {
+
+  if (goalsList.length <= 0) {
+    console.log("There are no goals to list.")
+    return
+  }
+
+  const selectedGoalsList = await checkbox({
+    message: "Press spacebar to check/uncheck.",
+    choices: [...goalsList],
+    instructions: false
+  })
+
+  if (selectedGoalsList.length <= 0) {
+    console.log("There are any selected goals.")
+    return
+  }
+
+  // reset check from all goals
+  goalsList.forEach(goal => {
+    goal.checked = false
+  })
+
+  // check only the goals are checked
+  selectedGoalsList.forEach(selectedGoal => {
+    const goal = goalsList.find(goalItem => {
+      return goalItem.value == selectedGoal
+    })
+
+    goal.checked = true
+
+  })
+
+  console.log('mostra todas as metas')
+  console.log(goalsList)
 }
 
 const pendingGoals = async () => {
@@ -96,5 +137,7 @@ const completedGoals = async () => {
     console.log(goalItem.value)
   }
 }
+
+
 
 start()
