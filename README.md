@@ -1,8 +1,8 @@
 # goalsManager
 NLW - Pocket Javascript.
 
-- [] Create Menu
-    - [] Select Options
+- [x] Create Menu
+    - [x] Select Options
     - [] Select Messages
 - [] Create goal(s)
 - [] List pending goal(s)
