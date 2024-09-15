@@ -6,6 +6,6 @@ NLW - Pocket Javascript.
     - [] Select Messages
 - [x] Create goal(s)
 - [x] Pending goal(s) list
-- [] Completed goal(s) list
+- [x] Completed goal(s) list
 - [] Delete goal(s)
 - [] Save goal(s)

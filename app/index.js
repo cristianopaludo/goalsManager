@@ -23,10 +23,10 @@ const start = async () => {
         await createGoals()
         break
       case "pendingGoals":
-        await pendingGoalsList()
+        await pendingGoals()
         break
       case "completedGoals":
-        console.log("Completed Goals")
+        completedGoals()
         break
       case "deleteGoals":
         console.log("Delete Goals")
@@ -54,7 +54,7 @@ const createGoals = async () => {
   console.log("Goal successfully created.")
 }
 
-const pendingGoalsList = () => {
+const pendingGoals = async () => {
   let pendingGoalsList = []
   
   goalsList.forEach(goal => {
@@ -71,6 +71,28 @@ const pendingGoalsList = () => {
   console.log("Pending Goals:")
 
   for (const goalItem of pendingGoalsList) {
+    console.log(goalItem.value)
+  }
+}
+
+const completedGoals = async () => {
+  
+  let completedGoalsList = []
+
+  goalsList.forEach(goal => {
+    if (goal.checked) {
+      completedGoalsList.push(goal)
+    }
+  })
+
+  if (completedGoalsList.length <= 0) {
+    console.log("There are no completed goals.")
+    return
+  }
+
+  console.log("Completed Goals:")
+
+  for (const goalItem of completedGoalsList) {
     console.log(goalItem.value)
   }
 }
