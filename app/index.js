@@ -9,8 +9,8 @@ const start = async () => {
       message: "Menu >",
       choices: [
         { name: "Create goals",         value: "createGoals"        },
-        { name: "List Pending goals",   value: "listPendingGoals"   },
-        { name: "List Completed goals", value: "listCompletedGoals" },
+        { name: "Show pending goals",   value: "pendingGoals"   },
+        { name: "Show completed goals", value: "completedGoals" },
         { name: "Delete goals",         value: "deleteGoals"        },
         { name: "Exit Menu",            value: "exitMenu"           },
       ]
@@ -22,11 +22,11 @@ const start = async () => {
       case "createGoals":
         await createGoals()
         break
-      case "listPendingGoals":
-        console.log("List Pending Goals")
+      case "pendingGoals":
+        await pendingGoalsList()
         break
-      case "listCompletedGoals":
-        console.log("List Completed Goals")
+      case "completedGoals":
+        console.log("Completed Goals")
         break
       case "deleteGoals":
         console.log("Delete Goals")
@@ -47,12 +47,32 @@ const createGoals = async () => {
 
   if (goalInput.length <= 0) {
     console.log("Goal can't be empty.")
-
     return
   }
 
   goalsList.push({ value: goalInput, checked: false })
   console.log("Goal successfully created.")
+}
+
+const pendingGoalsList = () => {
+  let pendingGoalsList = []
+  
+  goalsList.forEach(goal => {
+    if (!goal.checked) {
+      pendingGoalsList.push(goal)
+    }
+  })
+
+  if (pendingGoalsList.length <= 0) {
+    console.log("There are no pending goals.")
+    return
+  }
+  
+  console.log("Pending Goals:")
+
+  for (const goalItem of pendingGoalsList) {
+    console.log(goalItem.value)
+  }
 }
 
 start()

@@ -4,8 +4,8 @@ NLW - Pocket Javascript.
 - [x] Create Menu
     - [x] Select Options
     - [] Select Messages
-- [] Create goal(s)
-- [] List pending goal(s)
-- [] List completed goal(s)
+- [x] Create goal(s)
+- [x] Pending goal(s) list
+- [] Completed goal(s) list
 - [] Delete goal(s)
 - [] Save goal(s)
